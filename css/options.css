@@ -1,0 +1,467 @@
+/* JetPrompt Settings Page Styles */
+
+:root {
+  --color-teal: #4ECDC4;
+  --color-mint: #A8E6CF;
+  --color-orange: #FFD93D;
+  --color-purple: #B19CD9;
+  --color-pink: #FFB6C1;
+  --color-dark: #2C3E50;
+  --color-darker: #1A252F;
+  --color-light: #ECF0F1;
+  --color-white: #FFFFFF;
+  --color-gray: #95A5A6;
+  --color-error: #E74C3C;
+  --color-warning: #F39C12;
+  --color-success: #27AE60;
+  
+  --font-primary: 'Lexend Deca', sans-serif;
+  --font-display: 'Orbitron', monospace;
+  
+  --border-radius: 12px;
+  --border-radius-small: 8px;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --shadow-hover: 0 6px 20px rgba(0, 0, 0, 0.2);
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-primary);
+  background: linear-gradient(135deg, var(--color-darker) 0%, var(--color-dark) 100%);
+  color: var(--color-light);
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+.jetprompt-settings-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header */
+.jetprompt-settings-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px 0 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 30px;
+}
+
+.jetprompt-settings-title {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, var(--color-teal) 0%, var(--color-mint) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.jetprompt-settings-version {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  color: var(--color-gray);
+  font-weight: 500;
+}
+
+/* Status Banner */
+.jetprompt-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  border-radius: var(--border-radius-small);
+  margin-bottom: 20px;
+  font-size: 14px;
+  animation: slideDown 0.3s ease-out;
+}
+
+.jetprompt-banner.success {
+  background: var(--color-success);
+  color: var(--color-white);
+}
+
+.jetprompt-banner.warning {
+  background: var(--color-warning);
+  color: var(--color-dark);
+}
+
+.jetprompt-banner.error {
+  background: var(--color-error);
+  color: var(--color-white);
+}
+
+.jetprompt-banner-close {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 0;
+  margin-left: 12px;
+  opacity: 0.8;
+  transition: var(--transition);
+}
+
+.jetprompt-banner-close:hover {
+  opacity: 1;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Settings Content */
+.jetprompt-settings-content {
+  padding-bottom: 40px;
+}
+
+.jetprompt-settings-section {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--border-radius);
+  padding: 30px;
+  margin-bottom: 30px;
+  transition: var(--transition);
+}
+
+.jetprompt-settings-section:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(78, 205, 196, 0.3);
+}
+
+.jetprompt-section-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--color-teal);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.jetprompt-section-title::before {
+  content: '';
+  width: 4px;
+  height: 24px;
+  background: linear-gradient(90deg, var(--color-teal) 0%, var(--color-mint) 100%);
+  border-radius: 2px;
+}
+
+/* Setting Items */
+.jetprompt-setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.jetprompt-setting-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.jetprompt-setting-info {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.jetprompt-setting-label {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-light);
+  display: block;
+  margin-bottom: 8px;
+}
+
+.jetprompt-setting-description {
+  font-size: 14px;
+  color: var(--color-gray);
+  line-height: 1.5;
+}
+
+.jetprompt-setting-control {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Buttons */
+.jetprompt-btn {
+  background: var(--color-teal);
+  border: none;
+  border-radius: var(--border-radius-small);
+  padding: 10px 20px;
+  color: var(--color-dark);
+  font-family: var(--font-primary);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  min-width: 120px;
+}
+
+.jetprompt-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+.jetprompt-btn:active {
+  transform: translateY(0);
+}
+
+.jetprompt-btn-primary {
+  background: linear-gradient(90deg, var(--color-teal) 0%, var(--color-mint) 100%);
+}
+
+.jetprompt-btn-secondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--color-light);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.jetprompt-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: var(--color-teal);
+}
+
+.jetprompt-btn-danger {
+  background: var(--color-error);
+  color: var(--color-white);
+}
+
+.jetprompt-btn-danger:hover {
+  background: #c0392b;
+}
+
+.jetprompt-btn-group {
+  display: flex;
+  gap: 8px;
+}
+
+/* Toggle Switch */
+.jetprompt-toggle {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+}
+
+.jetprompt-toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.jetprompt-toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.2);
+  transition: var(--transition);
+  border-radius: 24px;
+}
+
+.jetprompt-toggle-slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background: var(--color-white);
+  transition: var(--transition);
+  border-radius: 50%;
+}
+
+.jetprompt-toggle input:checked + .jetprompt-toggle-slider {
+  background: var(--color-teal);
+}
+
+.jetprompt-toggle input:checked + .jetprompt-toggle-slider:before {
+  transform: translateX(26px);
+}
+
+/* Drive Controls */
+.jetprompt-drive-controls {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Danger Zone */
+.jetprompt-danger-zone {
+  background: rgba(231, 76, 60, 0.1);
+  border: 1px solid rgba(231, 76, 60, 0.3);
+  border-radius: var(--border-radius-small);
+  padding: 20px;
+  margin-top: 20px;
+}
+
+/* About Section */
+.jetprompt-about-content {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.jetprompt-about-logo {
+  font-size: 64px;
+  margin-bottom: 20px;
+  opacity: 0.8;
+}
+
+.jetprompt-about-content h3 {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--color-teal);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.jetprompt-about-content p {
+  font-size: 16px;
+  color: var(--color-gray);
+  margin-bottom: 30px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.jetprompt-about-stats {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 30px;
+}
+
+.jetprompt-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.jetprompt-stat-value {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--color-teal);
+  font-family: var(--font-display);
+}
+
+.jetprompt-stat-label {
+  font-size: 12px;
+  color: var(--color-gray);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .jetprompt-settings-container {
+    padding: 0 16px;
+  }
+  
+  .jetprompt-settings-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  
+  .jetprompt-settings-title {
+    font-size: 24px;
+  }
+  
+  .jetprompt-settings-section {
+    padding: 20px;
+  }
+  
+  .jetprompt-setting-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  
+  .jetprompt-setting-info {
+    margin-right: 0;
+  }
+  
+  .jetprompt-setting-control {
+    width: 100%;
+    justify-content: flex-start;
+  }
+  
+  .jetprompt-btn-group {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .jetprompt-btn {
+    width: 100%;
+  }
+  
+  .jetprompt-about-stats {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.jetprompt-settings-section {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.jetprompt-settings-section:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.jetprompt-settings-section:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.jetprompt-settings-section:nth-child(4) {
+  animation-delay: 0.3s;
+}
+
+.jetprompt-settings-section:nth-child(5) {
+  animation-delay: 0.4s;
+}
+

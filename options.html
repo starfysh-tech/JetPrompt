@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JetPrompt Settings</title>
+  <link rel="stylesheet" href="css/options.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="jetprompt-settings-container">
+    <!-- Header -->
+    <header class="jetprompt-settings-header">
+      <h1 class="jetprompt-settings-title">JetPrompt Settings</h1>
+      <div class="jetprompt-settings-version">v1.0</div>
+    </header>
+
+    <!-- Status Banner -->
+    <div class="jetprompt-banner" id="statusBanner" style="display: none;">
+      <span class="jetprompt-banner-text" id="statusBannerText"></span>
+      <button class="jetprompt-banner-close" id="statusBannerClose">×</button>
+    </div>
+
+    <!-- Settings Content -->
+    <div class="jetprompt-settings-content">
+      
+      <!-- Keyboard Shortcut Section -->
+      <section class="jetprompt-settings-section">
+        <h2 class="jetprompt-section-title">Keyboard Shortcut</h2>
+        <div class="jetprompt-setting-item">
+          <div class="jetprompt-setting-info">
+            <label class="jetprompt-setting-label">Quick Insert Overlay</label>
+            <p class="jetprompt-setting-description">
+              Keyboard shortcut to open the quick insert overlay. Currently set to <strong>Ctrl+Shift+J</strong> (or <strong>Cmd+Shift+J</strong> on Mac).
+            </p>
+          </div>
+          <div class="jetprompt-setting-control">
+            <button class="jetprompt-btn jetprompt-btn-secondary" id="customizeShortcutBtn">
+              Customize Shortcut
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Google Drive Sync Section -->
+      <section class="jetprompt-settings-section">
+        <h2 class="jetprompt-section-title">Google Drive Sync</h2>
+        
+        <div class="jetprompt-setting-item">
+          <div class="jetprompt-setting-info">
+            <label class="jetprompt-setting-label">Enable Google Drive Sync</label>
+            <p class="jetprompt-setting-description">
+              Sync your prompts with Google Drive for backup and cross-device access. A folder named "JetPrompt" will be created in your Google Drive.
+            </p>
+          </div>
+          <div class="jetprompt-setting-control">
+            <label class="jetprompt-toggle">
+              <input type="checkbox" id="enableDriveSync">
+              <span class="jetprompt-toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="jetprompt-drive-controls" id="driveControls" style="display: none;">
+          <div class="jetprompt-setting-item">
+            <div class="jetprompt-setting-info">
+              <label class="jetprompt-setting-label">Sync Status</label>
+              <p class="jetprompt-setting-description" id="syncStatusText">
+                Not connected to Google Drive.
+              </p>
+            </div>
+            <div class="jetprompt-setting-control">
+              <div class="jetprompt-btn-group">
+                <button class="jetprompt-btn jetprompt-btn-primary" id="syncNowBtn">
+                  Sync Now
+                </button>
+                <button class="jetprompt-btn jetprompt-btn-secondary" id="disconnectDriveBtn">
+                  Disconnect
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="jetprompt-setting-item">
+            <div class="jetprompt-setting-info">
+              <label class="jetprompt-setting-label">Auto-sync</label>
+              <p class="jetprompt-setting-description">
+                Automatically sync changes to Google Drive when prompts are added, edited, or deleted.
+              </p>
+            </div>
+            <div class="jetprompt-setting-control">
+              <label class="jetprompt-toggle">
+                <input type="checkbox" id="autoSync" checked>
+                <span class="jetprompt-toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Data Management Section -->
+      <section class="jetprompt-settings-section">
+        <h2 class="jetprompt-section-title">Data Management</h2>
+        
+        <div class="jetprompt-setting-item">
+          <div class="jetprompt-setting-info">
+            <label class="jetprompt-setting-label">Export Data</label>
+            <p class="jetprompt-setting-description">
+              Export all your prompts as a JSON file for backup or migration.
+            </p>
+          </div>
+          <div class="jetprompt-setting-control">
+            <button class="jetprompt-btn jetprompt-btn-secondary" id="exportDataBtn">
+              Export JSON
+            </button>
+          </div>
+        </div>
+
+        <div class="jetprompt-setting-item">
+          <div class="jetprompt-setting-info">
+            <label class="jetprompt-setting-label">Import Data</label>
+            <p class="jetprompt-setting-description">
+              Import prompts from a JSON file. This will merge with your existing prompts.
+            </p>
+          </div>
+          <div class="jetprompt-setting-control">
+            <input type="file" id="importFileInput" accept=".json" style="display: none;">
+            <button class="jetprompt-btn jetprompt-btn-secondary" id="importDataBtn">
+              Import JSON
+            </button>
+          </div>
+        </div>
+
+        <div class="jetprompt-setting-item jetprompt-danger-zone">
+          <div class="jetprompt-setting-info">
+            <label class="jetprompt-setting-label">Clear All Data</label>
+            <p class="jetprompt-setting-description">
+              Permanently delete all prompts from local storage. This action cannot be undone.
+            </p>
+          </div>
+          <div class="jetprompt-setting-control">
+            <button class="jetprompt-btn jetprompt-btn-danger" id="clearDataBtn">
+              Clear All Data
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section class="jetprompt-settings-section">
+        <h2 class="jetprompt-section-title">About</h2>
+        
+        <div class="jetprompt-about-content">
+          <div class="jetprompt-about-logo">🚀</div>
+          <h3>JetPrompt</h3>
+          <p>A retro-futuristic Chrome extension for managing and inserting text prompts with ease, speed, and joy.</p>
+          
+          <div class="jetprompt-about-stats">
+            <div class="jetprompt-stat">
+              <span class="jetprompt-stat-value" id="totalPromptsCount">0</span>
+              <span class="jetprompt-stat-label">Total Prompts</span>
+            </div>
+            <div class="jetprompt-stat">
+              <span class="jetprompt-stat-value" id="favoritePromptsCount">0</span>
+              <span class="jetprompt-stat-label">Favorites</span>
+            </div>
+            <div class="jetprompt-stat">
+              <span class="jetprompt-stat-value" id="uniqueTagsCount">0</span>
+              <span class="jetprompt-stat-label">Unique Tags</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script src="js/storage.js"></script>
+  <script src="js/googleDriveSync.js"></script>
+  <script src="js/options.js"></script>
+</body>
+</html>
+

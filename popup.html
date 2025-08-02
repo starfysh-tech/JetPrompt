@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JetPrompt</title>
+  <link rel="stylesheet" href="css/popup.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="jetprompt-container">
+    <!-- Header -->
+    <header class="jetprompt-header">
+      <h1 class="jetprompt-title">JetPrompt</h1>
+      <button class="jetprompt-settings-btn" id="settingsBtn" title="Settings">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="3"></circle>
+          <path d="M12 1v6m0 6v6m11-7h-6m-6 0H1m17-4a4 4 0 0 1-8 0 4 4 0 0 1 8 0zM7 12a4 4 0 0 1-8 0 4 4 0 0 1 8 0z"></path>
+        </svg>
+      </button>
+    </header>
+
+    <!-- Sync Status Banner -->
+    <div class="jetprompt-banner" id="syncBanner" style="display: none;">
+      <span class="jetprompt-banner-text" id="syncBannerText"></span>
+      <button class="jetprompt-banner-close" id="syncBannerClose">×</button>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="jetprompt-search-container">
+      <input type="text" class="jetprompt-search" id="searchInput" placeholder="Search prompts...">
+      <svg class="jetprompt-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"></circle>
+        <path d="m21 21-4.35-4.35"></path>
+      </svg>
+    </div>
+
+    <!-- Tag Filter Buttons -->
+    <div class="jetprompt-tag-filters" id="tagFilters">
+      <!-- Tag buttons will be dynamically generated -->
+    </div>
+
+    <!-- Add Prompt Section -->
+    <div class="jetprompt-add-section">
+      <textarea class="jetprompt-add-input" id="addPromptInput" placeholder="Add a new prompt..."></textarea>
+      <div class="jetprompt-add-controls">
+        <input type="text" class="jetprompt-tags-input" id="addTagsInput" placeholder="Tags (comma-separated)">
+        <button class="jetprompt-add-btn" id="addPromptBtn">Add</button>
+      </div>
+    </div>
+
+    <!-- Prompts List -->
+    <div class="jetprompt-prompts-container">
+      <div class="jetprompt-prompts-list" id="promptsList">
+        <!-- Prompt cards will be dynamically generated -->
+      </div>
+    </div>
+
+    <!-- Empty State -->
+    <div class="jetprompt-empty-state" id="emptyState" style="display: none;">
+      <div class="jetprompt-empty-icon">🚀</div>
+      <h3>No prompts yet</h3>
+      <p>Add your first prompt above to get started!</p>
+    </div>
+  </div>
+
+  <script src="js/storage.js"></script>
+  <script src="js/googleDriveSync.js"></script>
+  <script src="js/popup.js"></script>
+</body>
+</html>
+
