@@ -20,6 +20,7 @@ const uniqueTagsCount = document.getElementById('uniqueTagsCount');
 document.addEventListener('DOMContentLoaded', async () => {
   await loadSettings();
   await updateStats();
+  await loadVersionInfo();
   setupEventListeners();
 });
 
@@ -232,5 +233,95 @@ function showStatusBanner(message, type = 'info', duration = 5000) {
 // Hide status banner
 function hideStatusBanner() {
   statusBanner.style.display = 'none';
+}
+
+// Add rubber-band animations to button clicks
+function add_button_animation(button) {
+  if (button) {
+    button.style.animation = 'rubber-band 60ms ease-out';
+    setTimeout(() => {
+      button.style.animation = '';
+    }, 60);
+  }
+}
+
+// Load version info from manifest
+async function loadVersionInfo() {
+  try {
+    const manifest = chrome.runtime.getManifest();
+    const versionElement = document.querySelector('.jetprompt-settings-version');
+    if (versionElement && manifest.version) {
+      versionElement.textContent = `v${manifest.version}`;
+    }
+  } catch (error) {
+    console.error('Error loading version info:', error);
+  }
+}
+
+// Toast notification system (same as popup.js)
+function show_toast(message, type = 'success') {
+  // Remove existing toast if any
+  const existingToast = document.querySelector('.jetprompt-toast');
+  if (existingToast) {
+    existingToast.remove();
+  }
+  
+  // Create toast element
+  const toast = document.createElement('div');
+  toast.className = `jetprompt-toast jetprompt-toast-${type}`;
+  toast.style.cssText = `
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: linear-gradient(145deg, var(--atomic-orchid), var(--galactic-aqua));
+    color: var(--rocket-cadet);
+    padding: 12px 20px;
+    border-radius: var(--border-radius-bubble);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    z-index: 10000;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+  `;
+  
+  if (type === 'error') {
+    toast.style.background = 'linear-gradient(145deg, var(--robo-rust), #ff7b5c)';
+    toast.style.color = 'var(--moon-mist)';
+  }
+  
+  // Add to page
+  document.body.appendChild(toast);
+  
+  // Typewriter effect
+  toast.innerHTML = '';
+  const chars = [...message];
+  chars.forEach((char, i) => {
+    setTimeout(() => {
+      toast.innerHTML += char;
+    }, i * 60);
+  });
+  
+  // Slide up animation
+  setTimeout(() => {
+    toast.style.transform = 'translateY(0)';
+    toast.style.opacity = '1';
+  }, 10);
+  
+  // Auto remove after 3 seconds
+  setTimeout(() => {
+    toast.style.transform = 'translateY(100px)';
+    toast.style.opacity = '0';
+    setTimeout(() => {
+      if (toast.parentNode) {
+        toast.remove();
+      }
+    }, 300);
+  }, 3000 + (chars.length * 60));
 }
 

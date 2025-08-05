@@ -7,18 +7,15 @@
   <link rel="stylesheet" href="css/popup.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Space+Mono:wght@400;700&family=Zen+Dots&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="jetprompt-container">
+  <div class="popup-wrapper">
+    <div class="jetprompt-container">
     <!-- Header -->
     <header class="jetprompt-header">
       <h1 class="jetprompt-title">JetPrompt</h1>
-      <button class="jetprompt-settings-btn" id="settingsBtn" title="Settings">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="12" cy="12" r="3"></circle>
-          <path d="M12 1v6m0 6v6m11-7h-6m-6 0H1m17-4a4 4 0 0 1-8 0 4 4 0 0 1 8 0zM7 12a4 4 0 0 1-8 0 4 4 0 0 1 8 0z"></path>
-        </svg>
+      <button class="chrome-pill jetprompt-settings-btn" id="settingsBtn" title="Settings">
       </button>
     </header>
 
@@ -26,7 +23,7 @@
 
     <!-- Search Bar -->
     <div class="jetprompt-search-container">
-      <input type="text" class="jetprompt-search" id="searchInput" placeholder="Search prompts...">
+      <input type="text" class="jetprompt-search" id="searchInput" placeholder="Search your prompts...">
       <svg class="jetprompt-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <circle cx="11" cy="11" r="8"></circle>
         <path d="m21 21-4.35-4.35"></path>
@@ -43,7 +40,7 @@
       <textarea class="jetprompt-add-input" id="addPromptInput" placeholder="Add a new prompt..."></textarea>
       <div class="jetprompt-add-controls">
         <input type="text" class="jetprompt-tags-input" id="addTagsInput" placeholder="Tags (comma-separated)">
-        <button class="jetprompt-add-btn" id="addPromptBtn">Add</button>
+        <button class="chrome-pill jetprompt-add-btn" id="addPromptBtn">Add</button>
       </div>
     </div>
 
@@ -60,6 +57,13 @@
       <h3>No prompts yet</h3>
       <p>Add your first prompt above to get started!</p>
     </div>
+
+    <!-- Retro Quote Easter Egg -->
+    <div class="jetprompt-retro-quote" id="retroQuote">
+      <div class="jetprompt-quote-text" id="quoteText"></div>
+      <div class="jetprompt-quote-author" id="quoteAuthor"></div>
+    </div>
+  </div>
   </div>
 
   <script src="js/storage.js"></script>

@@ -7,10 +7,11 @@
   <link rel="stylesheet" href="css/options.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Space+Mono:wght@400;700&family=Zen+Dots&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="jetprompt-settings-container">
+  <div class="options-wrapper">
+    <div class="jetprompt-settings-container">
     <!-- Header -->
     <header class="jetprompt-settings-header">
       <h1 class="jetprompt-settings-title">JetPrompt Settings</h1>
@@ -37,7 +38,7 @@
             </p>
           </div>
           <div class="jetprompt-setting-control">
-            <button class="jetprompt-btn jetprompt-btn-secondary" id="customizeShortcutBtn">
+            <button class="chrome-pill" id="customizeShortcutBtn">
               Customize Shortcut
             </button>
           </div>
@@ -58,7 +59,7 @@
             </p>
           </div>
           <div class="jetprompt-setting-control">
-            <button class="jetprompt-btn jetprompt-btn-secondary" id="exportDataBtn">
+            <button class="chrome-pill" id="exportDataBtn">
               Export JSON
             </button>
           </div>
@@ -73,7 +74,7 @@
           </div>
           <div class="jetprompt-setting-control">
             <input type="file" id="importFileInput" accept=".json" style="display: none;">
-            <button class="jetprompt-btn jetprompt-btn-secondary" id="importDataBtn">
+            <button class="chrome-pill" id="importDataBtn">
               Import JSON
             </button>
           </div>
@@ -87,7 +88,7 @@
             </p>
           </div>
           <div class="jetprompt-setting-control">
-            <button class="jetprompt-btn jetprompt-btn-danger" id="clearDataBtn">
+            <button class="chrome-pill danger" id="clearDataBtn">
               Clear All Data
             </button>
           </div>
@@ -105,21 +106,22 @@
           
           <div class="jetprompt-about-stats">
             <div class="jetprompt-stat">
-              <span class="jetprompt-stat-value" id="totalPromptsCount">0</span>
+              <span class="digital-counter" id="totalPromptsCount">0</span>
               <span class="jetprompt-stat-label">Total Prompts</span>
             </div>
             <div class="jetprompt-stat">
-              <span class="jetprompt-stat-value" id="favoritePromptsCount">0</span>
+              <span class="digital-counter" id="favoritePromptsCount">0</span>
               <span class="jetprompt-stat-label">Favorites</span>
             </div>
             <div class="jetprompt-stat">
-              <span class="jetprompt-stat-value" id="uniqueTagsCount">0</span>
+              <span class="digital-counter" id="uniqueTagsCount">0</span>
               <span class="jetprompt-stat-label">Unique Tags</span>
             </div>
           </div>
         </div>
       </section>
     </div>
+  </div>
   </div>
 
   <script src="js/storage.js"></script>

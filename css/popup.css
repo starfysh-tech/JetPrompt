@@ -1,586 +1,1007 @@
 /* JetPrompt Retro-Futuristic Styles */
 
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Space+Mono:wght@400;700&family=Zen+Dots&display=swap");
+
 :root {
-  --color-teal: #4ECDC4;
-  --color-mint: #A8E6CF;
-  --color-orange: #FFD93D;
-  --color-purple: #B19CD9;
-  --color-pink: #FFB6C1;
-  --color-dark: #2C3E50;
-  --color-darker: #1A252F;
-  --color-light: #ECF0F1;
-  --color-white: #FFFFFF;
-  --color-gray: #95A5A6;
-  --color-error: #E74C3C;
-  --color-warning: #F39C12;
-  --color-success: #27AE60;
-  
-  --font-primary: 'Lexend Deca', sans-serif;
-  --font-display: 'Orbitron', monospace;
-  
-  --border-radius: 12px;
-  --border-radius-small: 8px;
-  --shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  --shadow-hover: 0 6px 20px rgba(0, 0, 0, 0.2);
-  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --atomic-orchid: #ff33ff;
+    --galactic-aqua: #00e5ff;
+    --rocket-cadet: #1a1a36;
+    --moon-mist: #f2f7ff;
+    --robo-rust: #ff5c39;
+    --plasma-gold: #ffd400;
+    --nebula-purple: rgba(128, 0, 255, 0.3);
+
+    --font-primary: "Zen Dots", sans-serif;
+    --font-display: "Orbitron", monospace;
+    --font-mono: "Space Mono", monospace;
+    --font-digital: "Space Mono", monospace;
+
+    --border-radius: 12px;
+    --border-radius-small: 8px;
+    --border-radius-bubble: 32px;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    --shadow-hover: 0 6px 20px rgba(0, 0, 0, 0.4);
+    --shadow-neon: 0 0 12px var(--galactic-aqua);
+    --shadow-neon-pink: 0 0 12px var(--atomic-orchid);
+    --shadow-neon-gold: 0 0 12px var(--plasma-gold);
+    --transition: all 0.22s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+    --transition-elastic: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
+html,
 body {
-  font-family: var(--font-primary);
-  background: linear-gradient(135deg, var(--color-darker) 0%, var(--color-dark) 100%);
-  color: var(--color-light);
-  width: 520px;
-  min-height: 650px;
-  max-height: 750px;
-  overflow: hidden;
+    font-family: var(--font-primary);
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            var(--galactic-aqua) 1px,
+            transparent 1px
+        ),
+        radial-gradient(
+            circle at 80% 80%,
+            var(--atomic-orchid) 0.5px,
+            transparent 0.5px
+        ),
+        linear-gradient(135deg, var(--rocket-cadet) 0%, #0f1424 100%);
+    background-size:
+        40px 40px,
+        60px 60px,
+        100% 100%;
+    background-position:
+        0 0,
+        30px 30px,
+        0 0;
+    color: var(--moon-mist);
+    width: 520px;
+    min-height: 650px;
+    max-height: 750px;
+    overflow: hidden;
+}
+
+.popup-wrapper {
+    backdrop-filter: blur(24px);
+    background: rgba(26, 26, 54, 0.85);
+    border-radius: var(--border-radius-bubble);
+    border: 1px solid rgba(0, 229, 255, 0.3);
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    margin: 8px;
+    overflow: hidden;
 }
 
 .jetprompt-container {
-  display: flex;
-  flex-direction: column;
-  height: 750px;
-  max-height: 750px;
+    display: flex;
+    flex-direction: column;
+    height: 750px;
+    max-height: 750px;
+    padding: 4px;
 }
 
 /* Header */
 .jetprompt-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 16px 20px;
-  background: linear-gradient(90deg, var(--color-teal) 0%, var(--color-mint) 100%);
-  color: var(--color-dark);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    background: linear-gradient(
+        135deg,
+        var(--atomic-orchid) 0%,
+        var(--galactic-aqua) 100%
+    );
+    color: var(--rocket-cadet);
+    border-radius: var(--border-radius-bubble) var(--border-radius-bubble) 0 0;
+    position: relative;
 }
 
 .jetprompt-title {
-  font-family: var(--font-display);
-  font-size: 24px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+
+.chrome-pill {
+    background: linear-gradient(
+        145deg,
+        var(--atomic-orchid),
+        var(--galactic-aqua)
+    );
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--border-radius-bubble);
+    padding: 12px 20px;
+    cursor: pointer;
+    transition: var(--transition);
+    color: var(--rocket-cadet);
+    font-family: var(--font-primary);
+    font-weight: 700;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+}
+
+.chrome-pill:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow:
+        var(--shadow-neon),
+        0 12px 30px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.chrome-pill:active {
+    transform: translateY(-1px) scale(1.02);
+    animation: rubber-band 60ms ease-out;
+}
+
+.chrome-pill.danger {
+    background: linear-gradient(145deg, var(--robo-rust), #ff7b5c);
+    color: var(--moon-mist);
 }
 
 .jetprompt-settings-btn {
-  background: rgba(255, 255, 255, 0.2);
-  border: none;
-  border-radius: var(--border-radius-small);
-  padding: 8px;
-  cursor: pointer;
-  transition: var(--transition);
-  color: var(--color-dark);
+    background: linear-gradient(
+        145deg,
+        var(--atomic-orchid),
+        var(--galactic-aqua)
+    );
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--border-radius-bubble);
+    padding: 12px;
+    cursor: pointer;
+    transition: var(--transition);
+    color: var(--rocket-cadet);
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 .jetprompt-settings-btn:hover {
-  background: rgba(255, 255, 255, 0.3);
-  transform: rotate(90deg);
+    transform: rotate(90deg) scale(1.1) translateY(-2px);
+    box-shadow:
+        var(--shadow-neon),
+        0 12px 30px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
 }
 
 /* Sync Banner */
 .jetprompt-banner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 8px 16px;
-  font-size: 12px;
-  animation: slideDown 0.3s ease-out;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 16px;
+    font-size: 12px;
+    animation: slideDown 0.3s ease-out;
 }
 
 .jetprompt-banner.success {
-  background: var(--color-success);
-  color: var(--color-white);
+    background: var(--galactic-aqua);
+    color: var(--moon-mist);
 }
 
 .jetprompt-banner.warning {
-  background: var(--color-warning);
-  color: var(--color-dark);
+    background: var(--plasma-gold);
+    color: var(--rocket-cadet);
 }
 
 .jetprompt-banner.error {
-  background: var(--color-error);
-  color: var(--color-white);
+    background: var(--robo-rust);
+    color: var(--moon-mist);
 }
 
 .jetprompt-banner-close {
-  background: none;
-  border: none;
-  color: inherit;
-  cursor: pointer;
-  font-size: 16px;
-  padding: 0;
-  margin-left: 8px;
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    font-size: 17px;
+    padding: 0;
+    margin-left: 8px;
 }
 
 @keyframes slideDown {
-  from {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 /* Search */
 .jetprompt-search-container {
-  position: relative;
-  margin: 16px 20px 0;
+    position: relative;
+    margin: 16px 20px 0;
 }
 
 .jetprompt-search {
-  width: 100%;
-  padding: 12px 16px 12px 40px;
-  background: rgba(255, 255, 255, 0.1);
-  border: 2px solid transparent;
-  border-radius: var(--border-radius);
-  color: var(--color-light);
-  font-family: var(--font-primary);
-  font-size: 14px;
-  transition: var(--transition);
+    width: 100%;
+    padding: 14px 18px 14px 44px;
+    background:
+        linear-gradient(145deg, rgba(26, 26, 54, 0.9), rgba(15, 20, 36, 0.95)),
+        linear-gradient(
+            90deg,
+            transparent 0%,
+            var(--nebula-purple) 50%,
+            transparent 100%
+        );
+    border: 2px solid var(--galactic-aqua);
+    border-radius: var(--border-radius-bubble);
+    color: var(--moon-mist);
+    font-family: var(--font-primary);
+    font-size: 15px;
+    transition: var(--transition);
+    box-shadow:
+        inset 0 4px 12px rgba(0, 0, 0, 0.4),
+        inset 0 -2px 0 rgba(255, 255, 255, 0.1);
+    caret-color: var(--plasma-gold);
 }
 
 .jetprompt-search:focus {
-  outline: none;
-  border-color: var(--color-teal);
-  background: rgba(255, 255, 255, 0.15);
+    outline: none;
+    border-color: var(--plasma-gold);
+    background:
+        linear-gradient(145deg, rgba(26, 26, 54, 0.95), rgba(15, 20, 36, 1)),
+        linear-gradient(
+            90deg,
+            transparent 0%,
+            var(--nebula-purple) 30%,
+            var(--plasma-gold) 50%,
+            var(--nebula-purple) 70%,
+            transparent 100%
+        );
+    box-shadow:
+        var(--shadow-neon-gold),
+        inset 0 4px 16px rgba(0, 0, 0, 0.5),
+        0 0 0 3px rgba(255, 212, 0, 0.2);
 }
 
 .jetprompt-search::placeholder {
-  color: var(--color-gray);
+    color: var(--moon-mist);
 }
 
 .jetprompt-search-icon {
-  position: absolute;
-  left: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: var(--color-gray);
-  pointer-events: none;
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--moon-mist);
+    pointer-events: none;
 }
 
 /* Tag Filters */
 .jetprompt-tag-filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin: 12px 20px 0;
-  max-height: 60px;
-  overflow-y: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 12px 20px 0;
+    max-height: 60px;
+    overflow-y: auto;
 }
 
 .jetprompt-tag-filter {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid var(--color-teal);
-  border-radius: 20px;
-  padding: 4px 12px;
-  font-size: 12px;
-  color: var(--color-light);
-  cursor: pointer;
-  transition: var(--transition);
-  white-space: nowrap;
+    background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.05),
+        rgba(0, 255, 204, 0.05)
+    );
+    border: 1px solid rgba(0, 255, 204, 0.3);
+    border-radius: var(--border-radius-bubble);
+    padding: 6px 16px;
+    font-size: 14px;
+    color: var(--moon-mist);
+    cursor: pointer;
+    transition: var(--transition-elastic);
+    white-space: nowrap;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-.jetprompt-tag-filter:hover,
+.jetprompt-tag-filter:hover {
+    background: linear-gradient(
+        145deg,
+        rgba(0, 255, 204, 0.15),
+        rgba(0, 212, 255, 0.1)
+    );
+    border-color: var(--galactic-aqua);
+    transform: scale(1.05);
+    box-shadow:
+        0 0 12px rgba(0, 255, 204, 0.3),
+        0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
 .jetprompt-tag-filter.active {
-  background: var(--color-teal);
-  color: var(--color-dark);
+    background: linear-gradient(
+        135deg,
+        var(--galactic-aqua) 0%,
+        var(--galactic-aqua) 100%
+    );
+    color: var(--rocket-cadet);
+    border-color: var(--galactic-aqua);
+    box-shadow:
+        var(--shadow-neon),
+        0 4px 15px rgba(0, 0, 0, 0.3);
+    animation: neonPulse 2s ease-in-out infinite;
 }
 
 /* Add Prompt Section */
 .jetprompt-add-section {
-  margin: 16px 20px 0;
-  padding: 16px;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: var(--border-radius);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 16px 20px 0;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--border-radius);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .jetprompt-add-input {
-  width: 100%;
-  min-height: 60px;
-  padding: 12px;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid transparent;
-  border-radius: var(--border-radius-small);
-  color: var(--color-light);
-  font-family: var(--font-primary);
-  font-size: 14px;
-  resize: vertical;
-  transition: var(--transition);
+    width: 100%;
+    min-height: 60px;
+    padding: 14px;
+    background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.05),
+        rgba(0, 255, 204, 0.03)
+    );
+    border: 2px solid rgba(0, 255, 204, 0.2);
+    border-radius: var(--border-radius);
+    color: var(--moon-mist);
+    font-family: var(--font-primary);
+    font-size: 15px;
+    resize: vertical;
+    transition: var(--transition);
+    box-shadow: inset 0 2px 12px rgba(0, 0, 0, 0.2);
 }
 
 .jetprompt-add-input:focus {
-  outline: none;
-  border-color: var(--color-teal);
-  background: rgba(255, 255, 255, 0.15);
+    outline: none;
+    border-color: var(--galactic-aqua);
+    background: linear-gradient(
+        145deg,
+        rgba(0, 255, 204, 0.08),
+        rgba(0, 212, 255, 0.05)
+    );
+    box-shadow:
+        0 0 15px rgba(0, 255, 204, 0.3),
+        inset 0 2px 15px rgba(0, 0, 0, 0.3),
+        0 0 0 3px rgba(0, 255, 204, 0.1);
 }
 
 .jetprompt-add-input::placeholder {
-  color: var(--color-gray);
+    color: var(--moon-mist);
 }
 
 .jetprompt-add-controls {
-  display: flex;
-  gap: 8px;
-  margin-top: 8px;
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
 }
 
 .jetprompt-tags-input {
-  flex: 1;
-  padding: 8px 12px;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid transparent;
-  border-radius: var(--border-radius-small);
-  color: var(--color-light);
-  font-family: var(--font-primary);
-  font-size: 12px;
-  transition: var(--transition);
+    flex: 1;
+    padding: 12px 14px;
+    background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.05),
+        rgba(0, 255, 204, 0.03)
+    );
+    border: 1px solid rgba(0, 255, 204, 0.2);
+    border-radius: var(--border-radius-bubble);
+    color: var(--moon-mist);
+    font-family: var(--font-primary);
+    font-size: 14px;
+    transition: var(--transition);
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .jetprompt-tags-input:focus {
-  outline: none;
-  border-color: var(--color-teal);
-  background: rgba(255, 255, 255, 0.15);
+    outline: none;
+    border-color: var(--galactic-aqua);
+    background: linear-gradient(
+        145deg,
+        rgba(0, 255, 204, 0.08),
+        rgba(0, 212, 255, 0.05)
+    );
+    box-shadow:
+        0 0 12px rgba(0, 255, 204, 0.3),
+        inset 0 2px 12px rgba(0, 0, 0, 0.3),
+        0 0 0 2px rgba(0, 255, 204, 0.1);
 }
 
 .jetprompt-tags-input::placeholder {
-  color: var(--color-gray);
+    color: var(--moon-mist);
 }
 
 .jetprompt-add-btn {
-  background: linear-gradient(90deg, var(--color-teal) 0%, var(--color-mint) 100%);
-  border: none;
-  border-radius: var(--border-radius-small);
-  padding: 8px 16px;
-  color: var(--color-dark);
-  font-family: var(--font-primary);
-  font-size: 12px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: var(--transition);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+    background: linear-gradient(
+        145deg,
+        var(--atomic-orchid),
+        var(--galactic-aqua)
+    );
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: var(--border-radius-bubble);
+    padding: 14px 28px;
+    color: var(--rocket-cadet);
+    font-family: var(--font-primary);
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    box-shadow:
+        var(--shadow-neon),
+        0 6px 20px rgba(0, 0, 0, 0.3),
+        inset 0 2px 0 rgba(255, 255, 255, 0.3),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.15);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .jetprompt-add-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: var(--shadow);
+    transform: translateY(-4px) scale(1.05);
+    box-shadow:
+        var(--shadow-neon),
+        var(--shadow-neon-pink),
+        0 16px 40px rgba(0, 0, 0, 0.4),
+        inset 0 2px 0 rgba(255, 255, 255, 0.4);
 }
 
 .jetprompt-add-btn:active {
-  transform: translateY(0);
+    transform: translateY(-2px) scale(1.02);
+    animation: rubber-band 60ms ease-out;
 }
 
 /* Prompts Container */
 .jetprompt-prompts-container {
-  flex: 1;
-  overflow: hidden;
-  margin: 16px 20px 20px;
+    flex: 1;
+    overflow: hidden;
+    margin: 16px 20px 20px;
 }
 
 .jetprompt-prompts-list {
-  height: 100%;
-  overflow-y: auto;
-  padding-right: 4px;
+    height: 100%;
+    overflow-y: auto;
+    padding-right: 4px;
 }
 
 .jetprompt-prompts-list::-webkit-scrollbar {
-  width: 4px;
+    width: 4px;
 }
 
 .jetprompt-prompts-list::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 2px;
+    background: rgba(26, 26, 54, 0.5);
+    border-radius: 2px;
 }
 
 .jetprompt-prompts-list::-webkit-scrollbar-thumb {
-  background: var(--color-teal);
-  border-radius: 2px;
+    background: var(--galactic-aqua);
+    border-radius: 2px;
+    animation: neon-pulse 1s ease-in-out infinite alternate;
+}
+
+@keyframes neon-pulse {
+    0% {
+        background: var(--galactic-aqua);
+        box-shadow: 0 0 4px var(--galactic-aqua);
+    }
+    100% {
+        background: var(--atomic-orchid);
+        box-shadow: 0 0 8px var(--atomic-orchid);
+    }
 }
 
 /* Prompt Card */
 .jetprompt-prompt-card {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: var(--border-radius);
-  padding: 16px;
-  margin-bottom: 12px;
-  transition: var(--transition);
-  cursor: pointer;
-  position: relative;
+    background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.03),
+        rgba(0, 255, 204, 0.02)
+    );
+    border: 1px solid rgba(0, 255, 204, 0.15);
+    border-radius: var(--border-radius);
+    padding: 18px;
+    margin-bottom: 16px;
+    transition: var(--transition-elastic);
+    cursor: pointer;
+    position: relative;
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    animation: float 6s ease-in-out infinite;
+}
+
+.jetprompt-prompt-card:nth-child(2n) {
+    animation-delay: -2s;
+}
+
+.jetprompt-prompt-card:nth-child(3n) {
+    animation-delay: -4s;
 }
 
 .jetprompt-prompt-card:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: var(--color-teal);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow);
+    background: linear-gradient(
+        145deg,
+        rgba(0, 229, 255, 0.08),
+        rgba(255, 51, 255, 0.05)
+    );
+    border-color: var(--galactic-aqua);
+    transform: translateY(-4px);
+    box-shadow:
+        0 0 20px var(--atomic-orchid),
+        0 8px 25px rgba(255, 51, 255, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    transition: all 220ms cubic-bezier(0.17, 0.67, 0.12, 0.99);
+    animation-play-state: paused;
 }
 
 .jetprompt-prompt-card.favorite {
-  border-color: var(--color-orange);
+    border-color: var(--atomic-orchid);
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05),
+        0 0 20px rgba(255, 16, 240, 0.1);
 }
 
 .jetprompt-prompt-card.favorite::before {
-  content: "⭐";
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  font-size: 12px;
+    content: "⭐";
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-size: 17px;
+    filter: drop-shadow(0 0 8px rgba(255, 16, 240, 0.6));
+    animation: pulse 2s ease-in-out infinite;
 }
 
 .jetprompt-prompt-text {
-  color: var(--color-light);
-  font-size: 14px;
-  line-height: 1.5;
-  margin-bottom: 8px;
-  word-wrap: break-word;
-  white-space: pre-wrap;
+    font-family: var(--font-mono);
+    color: var(--moon-mist);
+    font-size: 15px;
+    line-height: 1.5;
+    margin-bottom: 8px;
+    word-wrap: break-word;
+    white-space: pre-wrap;
 }
 
 .jetprompt-prompt-text[contenteditable="true"] {
-  outline: none;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: var(--border-radius-small);
-  padding: 8px;
+    outline: none;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: var(--border-radius-small);
+    padding: 8px;
 }
 
 .jetprompt-prompt-meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
 }
 
 .jetprompt-prompt-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
 }
 
 .jetprompt-prompt-tag {
-  background: var(--color-teal);
-  color: var(--color-dark);
-  padding: 2px 8px;
-  border-radius: 12px;
-  font-size: 10px;
-  font-weight: 500;
+    font-family: var(--font-mono);
+    background: var(--galactic-aqua);
+    color: var(--rocket-cadet);
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
 }
 
 .jetprompt-prompt-actions {
-  display: flex;
-  gap: 8px;
-  opacity: 0;
-  transition: var(--transition);
+    display: flex;
+    gap: 8px;
+    opacity: 0;
+    transition: var(--transition);
 }
 
 .jetprompt-prompt-card:hover .jetprompt-prompt-actions {
-  opacity: 1;
+    opacity: 1;
 }
 
 .jetprompt-action-btn {
-  background: none;
-  border: none;
-  color: var(--color-gray);
-  cursor: pointer;
-  padding: 4px;
-  border-radius: var(--border-radius-small);
-  transition: var(--transition);
+    background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.05),
+        rgba(0, 0, 0, 0.1)
+    );
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--moon-mist);
+    cursor: pointer;
+    padding: 8px;
+    border-radius: var(--border-radius-bubble);
+    transition: var(--transition-elastic);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .jetprompt-action-btn:hover {
-  color: var(--color-light);
-  background: rgba(255, 255, 255, 0.1);
+    color: var(--moon-mist);
+    background: linear-gradient(
+        145deg,
+        rgba(0, 255, 204, 0.15),
+        rgba(0, 212, 255, 0.1)
+    );
+    border-color: var(--galactic-aqua);
+    transform: scale(1.15);
+    box-shadow:
+        0 0 15px rgba(0, 255, 204, 0.4),
+        0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .jetprompt-action-btn.favorite {
-  color: var(--color-orange);
+    color: var(--atomic-orchid);
+    border-color: rgba(255, 16, 240, 0.3);
+}
+
+.jetprompt-action-btn.favorite:hover {
+    background: linear-gradient(
+        145deg,
+        rgba(255, 16, 240, 0.15),
+        rgba(255, 16, 240, 0.1)
+    );
+    border-color: var(--atomic-orchid);
+    box-shadow:
+        var(--shadow-neon-pink),
+        0 4px 12px rgba(0, 0, 0, 0.3);
+    animation: pulse 1.5s ease-in-out infinite;
 }
 
 .jetprompt-action-btn.delete:hover {
-  color: var(--color-error);
+    color: var(--robo-rust);
+    background: linear-gradient(
+        145deg,
+        rgba(255, 51, 102, 0.15),
+        rgba(255, 51, 102, 0.1)
+    );
+    border-color: var(--robo-rust);
+    box-shadow:
+        0 0 15px rgba(255, 51, 102, 0.4),
+        0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 /* Empty State */
 .jetprompt-empty-state {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 200px;
-  text-align: center;
-  color: var(--color-gray);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    text-align: center;
+    color: var(--moon-mist);
 }
 
 .jetprompt-empty-icon {
-  font-size: 48px;
-  margin-bottom: 16px;
-  opacity: 0.5;
+    font-size: 64px;
+    margin-bottom: 20px;
+    opacity: 0.8;
+    animation: float 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 12px rgba(0, 255, 204, 0.3));
+    transform-origin: center;
+}
+
+.jetprompt-empty-icon:hover {
+    animation: float 1s ease-in-out infinite;
+    filter: drop-shadow(0 0 20px var(--galactic-aqua));
+    transform: scale(1.1);
+}
+
+.jetprompt-empty-state::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 229, 255, 0.03) 2px,
+        rgba(0, 229, 255, 0.03) 4px
+    );
+    pointer-events: none;
+    opacity: 0.3;
+}
+
+.digital-counter {
+    font-family: var(--font-digital);
+    font-size: 20px;
+    color: var(--plasma-gold);
+    text-shadow:
+        0 0 12px var(--plasma-gold),
+        0 0 20px var(--plasma-gold),
+        0 0 30px var(--plasma-gold);
+    letter-spacing: 3px;
+    background: rgba(26, 26, 54, 0.8);
+    padding: 8px 16px;
+    border-radius: 4px;
+    border: 1px solid var(--plasma-gold);
+    display: inline-block;
 }
 
 .jetprompt-empty-state h3 {
-  font-size: 18px;
-  margin-bottom: 8px;
-  color: var(--color-light);
+    font-size: 17px;
+    margin-bottom: 8px;
+    color: var(--moon-mist);
 }
 
 .jetprompt-empty-state p {
-  font-size: 14px;
+    font-size: 15px;
 }
 
-/* Animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Retro Quote Easter Egg */
+.jetprompt-retro-quote {
+    margin-top: 20px;
+    padding: 16px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--nebula-purple);
+    border-radius: var(--border-radius-small);
+    text-align: center;
+    opacity: 0.7;
+    animation: quote-glow 3s ease-in-out infinite alternate;
 }
 
-.jetprompt-prompt-card {
-  animation: fadeIn 0.3s ease-out;
+.jetprompt-quote-text {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-style: italic;
+    color: var(--galactic-aqua);
+    margin-bottom: 8px;
+    text-shadow: 0 0 4px var(--galactic-aqua);
+}
+
+.jetprompt-quote-author {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--plasma-gold);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+@keyframes quote-glow {
+    from {
+        box-shadow: 0 0 5px var(--nebula-purple);
+    }
+    to {
+        box-shadow:
+            0 0 15px var(--nebula-purple),
+            0 0 25px var(--nebula-purple);
+    }
+}
+
+/* Settings Button */
+.jetprompt-settings-btn::after {
+    content: "🚀";
+    font-size: 17px;
+    filter: drop-shadow(0 0 4px var(--galactic-aqua));
+}
+
+/* Jetson Animations */
+@keyframes whoosh-in {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes rubber-band {
+    0% {
+        transform: scale(1);
+    }
+    60% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes comet-tail {
+    0% {
+        box-shadow: 0 0 0 0 var(--galactic-aqua);
+    }
+    100% {
+        box-shadow: 0 0 0 4px transparent;
+    }
+}
+
+@keyframes fold-and-fly {
+    0% {
+        transform: scale(1) rotateY(0deg);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(0.8) rotateY(45deg);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(0.3) rotateY(90deg) translateX(120%);
+        opacity: 0;
+    }
+}
+
+@keyframes float {
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-3px);
+    }
+}
+
+@keyframes pulse {
+    0%,
+    100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+.popup-wrapper {
+    animation: whoosh-in 220ms ease-out;
+}
+
+.fold-and-fly {
+    animation: fold-and-fly 400ms cubic-bezier(0.68, -0.55, 0.265, 1.55)
+        forwards;
 }
 
 /* Tag Editing */
 .jetprompt-tag-editing-container {
-  position: relative;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: var(--border-radius-small);
-  padding: 8px;
-  margin-top: 8px;
+    position: relative;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: var(--border-radius-small);
+    padding: 8px;
+    margin-top: 8px;
 }
 
 .jetprompt-tag-chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px;
-  margin-bottom: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-bottom: 8px;
 }
 
 .jetprompt-tag-chip {
-  display: flex;
-  align-items: center;
-  background: var(--color-teal);
-  color: var(--color-dark);
-  padding: 2px 6px;
-  border-radius: 12px;
-  font-size: 10px;
-  font-weight: 500;
+    display: flex;
+    align-items: center;
+    background: var(--galactic-aqua);
+    color: var(--rocket-cadet);
+    padding: 2px 6px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
 }
 
 .jetprompt-tag-chip-remove {
-  background: none;
-  border: none;
-  color: var(--color-dark);
-  cursor: pointer;
-  font-size: 12px;
-  margin-left: 4px;
-  padding: 0;
-  line-height: 1;
+    background: none;
+    border: none;
+    color: var(--rocket-cadet);
+    cursor: pointer;
+    font-size: 12px;
+    margin-left: 4px;
+    padding: 0;
+    line-height: 1;
 }
 
 .jetprompt-tag-chip-remove:hover {
-  color: var(--color-error);
+    color: var(--robo-rust);
 }
 
 .jetprompt-tag-input {
-  width: 100%;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid transparent;
-  border-radius: var(--border-radius-small);
-  padding: 6px 8px;
-  color: var(--color-light);
-  font-family: var(--font-primary);
-  font-size: 12px;
-  transition: var(--transition);
+    width: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid transparent;
+    border-radius: var(--border-radius-small);
+    padding: 6px 8px;
+    color: var(--moon-mist);
+    font-family: var(--font-primary);
+    font-size: 12px;
+    transition: var(--transition);
 }
 
 .jetprompt-tag-input:focus {
-  outline: none;
-  border-color: var(--color-teal);
-  background: rgba(255, 255, 255, 0.15);
+    outline: none;
+    border-color: var(--galactic-aqua);
+    background: rgba(255, 255, 255, 0.15);
 }
 
 .jetprompt-tag-input::placeholder {
-  color: var(--color-gray);
+    color: var(--moon-mist);
 }
 
 .jetprompt-tag-dropdown {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  background: var(--color-dark);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: var(--border-radius-small);
-  max-height: 150px;
-  overflow-y: auto;
-  z-index: 1000;
-  box-shadow: var(--shadow);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--rocket-cadet);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--border-radius-small);
+    max-height: 150px;
+    overflow-y: auto;
+    z-index: 1000;
+    box-shadow: var(--shadow);
 }
 
 .jetprompt-tag-dropdown-item {
-  display: flex;
-  align-items: center;
-  padding: 8px 12px;
-  cursor: pointer;
-  transition: var(--transition);
-  font-size: 12px;
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 12px;
 }
 
 .jetprompt-tag-dropdown-item:hover,
 .jetprompt-tag-dropdown-item.highlighted {
-  background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.1);
 }
 
 .jetprompt-tag-dropdown-checkbox {
-  margin-right: 8px;
-  accent-color: var(--color-teal);
+    margin-right: 8px;
+    accent-color: var(--galactic-aqua);
 }
 
 .jetprompt-tag-dropdown::-webkit-scrollbar {
-  width: 4px;
+    width: 4px;
 }
 
 .jetprompt-tag-dropdown::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 2px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
 }
 
 .jetprompt-tag-dropdown::-webkit-scrollbar-thumb {
-  background: var(--color-teal);
-  border-radius: 2px;
+    background: var(--galactic-aqua);
+    border-radius: 2px;
 }
 
 /* Responsive adjustments */
 @media (max-width: 400px) {
-  body {
-    width: 100vw;
-  }
-  
-  .jetprompt-container {
-    padding: 0 8px;
-  }
-  
-  .jetprompt-header {
-    padding: 12px 16px;
-  }
-  
-  .jetprompt-search-container,
-  .jetprompt-tag-filters,
-  .jetprompt-add-section,
-  .jetprompt-prompts-container {
-    margin-left: 16px;
-    margin-right: 16px;
-  }
-}
+    body {
+        width: 100vw;
+    }
 
+    .jetprompt-container {
+        padding: 0 8px;
+    }
+
+    .jetprompt-header {
+        padding: 12px 16px;
+    }
+
+    .jetprompt-search-container,
+    .jetprompt-tag-filters,
+    .jetprompt-add-section,
+    .jetprompt-prompts-container {
+        margin-left: 16px;
+        margin-right: 16px;
+    }
+}

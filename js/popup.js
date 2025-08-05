@@ -17,10 +17,25 @@ const emptyState = document.getElementById('emptyState');
 
 const settingsBtn = document.getElementById('settingsBtn');
 
+// Retro-futuristic quotes
+const RETRO_QUOTES = [
+  { text: "The future belongs to those who prepare for it today", author: "- Computer Prophet" },
+  { text: "In space, no one can hear you debug", author: "- Cosmic Programmer" },
+  { text: "To boldly code where no one has coded before", author: "- Space Captain" },
+  { text: "The rocket to tomorrow is built with today's algorithms", author: "- Digital Pioneer" },
+  { text: "Artificial intelligence is the new atomic age", author: "- Cyber Visionary" },
+  { text: "The stars are just pixels in the universe's display", author: "- Quantum Designer" },
+  { text: "Every great journey begins with a single byte", author: "- Data Explorer" },
+  { text: "The future is not written in code, but coded in dreams", author: "- Silicon Sage" },
+  { text: "Humanity's next step is through the digital frontier", author: "- Tech Philosopher" },
+  { text: "In the binary universe, we are all ones and zeros", author: "- Digital Mystic" }
+];
+
 // Initialize popup
 document.addEventListener("DOMContentLoaded", async () => {
   await loadPrompts();
   setupEventListeners();
+  displayRandomQuote();
 });
 function setupEventListeners() {
   searchInput.addEventListener('input', handleSearch);
@@ -257,7 +272,7 @@ function createPromptCard(prompt) {
   // Add placeholder if no tags
   if (prompt.tags.length === 0) {
     const placeholder = document.createElement('span');
-    placeholder.style.color = 'var(--color-gray)';
+    placeholder.style.color = 'var(--moon-mist)';
     placeholder.style.fontSize = '10px';
     placeholder.style.fontStyle = 'italic';
     placeholder.textContent = 'Click to add tags';
@@ -418,6 +433,15 @@ async function handleAddPrompt() {
   
   if (!text) return;
 
+  // Add rubber-band animation to button
+  const addBtn = document.getElementById('addPromptBtn');
+  if (addBtn) {
+    addBtn.style.animation = 'rubber-band 60ms ease-out';
+    setTimeout(() => {
+      addBtn.style.animation = '';
+    }, 60);
+  }
+
   const tags = tagsText ? tagsText.split(',').map(tag => tag.trim()).filter(tag => tag) : [];
   
   const newPrompt = {
@@ -437,9 +461,12 @@ async function handleAddPrompt() {
     updateTagFilters();
     renderPrompts();
     
+    // Show success toast
+    show_toast('Prompt added successfully!');
 
   } catch (error) {
     console.error("Error adding prompt:", error);
+    show_toast('Error adding prompt', 'error');
   }
 }
 
@@ -472,10 +499,24 @@ async function handleDeletePrompt(promptId) {
   if (!confirm("Are you sure you want to delete this prompt?")) return;
 
   try {
-    await deletePrompt(promptId);
-    currentPrompts = currentPrompts.filter(p => p.id !== promptId);
-    updateTagFilters();
-    renderPrompts();
+    // Add fold-and-fly animation
+    const promptCard = document.querySelector(`[data-prompt-id="${promptId}"]`);
+    if (promptCard) {
+      promptCard.classList.add('fold-and-fly');
+      
+      // Wait for animation to complete before removing
+      setTimeout(async () => {
+        await deletePrompt(promptId);
+        currentPrompts = currentPrompts.filter(p => p.id !== promptId);
+        updateTagFilters();
+        renderPrompts();
+      }, 400);
+    } else {
+      await deletePrompt(promptId);
+      currentPrompts = currentPrompts.filter(p => p.id !== promptId);
+      updateTagFilters();
+      renderPrompts();
+    }
   } catch (error) {
     console.error("Error deleting prompt:", error);
   }
@@ -713,4 +754,85 @@ async function finish_tag_editing() {
   setTimeout(() => {
     renderPrompts();
   }, 50);
+}
+
+// Toast notification system
+function show_toast(message, type = 'success') {
+  // Remove existing toast if any
+  const existingToast = document.querySelector('.jetprompt-toast');
+  if (existingToast) {
+    existingToast.remove();
+  }
+  
+  // Create toast element
+  const toast = document.createElement('div');
+  toast.className = `jetprompt-toast jetprompt-toast-${type}`;
+  toast.style.cssText = `
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: linear-gradient(145deg, var(--atomic-orchid), var(--galactic-aqua));
+    color: var(--rocket-cadet);
+    padding: 12px 20px;
+    border-radius: var(--border-radius-bubble);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    z-index: 10000;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+  `;
+  
+  if (type === 'error') {
+    toast.style.background = 'linear-gradient(145deg, var(--robo-rust), #ff7b5c)';
+    toast.style.color = 'var(--moon-mist)';
+  }
+  
+  // Add to page
+  document.body.appendChild(toast);
+  
+  // Typewriter effect
+  toast.innerHTML = '';
+  const chars = [...message];
+  chars.forEach((char, i) => {
+    setTimeout(() => {
+      toast.innerHTML += char;
+    }, i * 60);
+  });
+  
+  // Slide up animation
+  setTimeout(() => {
+    toast.style.transform = 'translateY(0)';
+    toast.style.opacity = '1';
+  }, 10);
+  
+  // Auto remove after 3 seconds
+  setTimeout(() => {
+    toast.style.transform = 'translateY(100px)';
+    toast.style.opacity = '0';
+    setTimeout(() => {
+      if (toast.parentNode) {
+        toast.remove();
+      }
+    }, 300);
+  }, 3000 + (chars.length * 60));
+}
+
+// Display random retro quote
+function displayRandomQuote() {
+  const randomIndex = Math.floor(Math.random() * RETRO_QUOTES.length);
+  const quote = RETRO_QUOTES[randomIndex];
+  
+  const quoteText = document.getElementById('quoteText');
+  const quoteAuthor = document.getElementById('quoteAuthor');
+  
+  if (quoteText && quoteAuthor) {
+    quoteText.textContent = `"${quote.text}"`;
+    quoteAuthor.textContent = quote.author;
+  }
 }
