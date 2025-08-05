@@ -44,61 +44,7 @@
         </div>
       </section>
 
-      <!-- Google Drive Sync Section -->
-      <section class="jetprompt-settings-section">
-        <h2 class="jetprompt-section-title">Google Drive Sync</h2>
-        
-        <div class="jetprompt-setting-item">
-          <div class="jetprompt-setting-info">
-            <label class="jetprompt-setting-label">Enable Google Drive Sync</label>
-            <p class="jetprompt-setting-description">
-              Sync your prompts with Google Drive for backup and cross-device access. A folder named "JetPrompt" will be created in your Google Drive.
-            </p>
-          </div>
-          <div class="jetprompt-setting-control">
-            <label class="jetprompt-toggle">
-              <input type="checkbox" id="enableDriveSync">
-              <span class="jetprompt-toggle-slider"></span>
-            </label>
-          </div>
-        </div>
 
-        <div class="jetprompt-drive-controls" id="driveControls" style="display: none;">
-          <div class="jetprompt-setting-item">
-            <div class="jetprompt-setting-info">
-              <label class="jetprompt-setting-label">Sync Status</label>
-              <p class="jetprompt-setting-description" id="syncStatusText">
-                Not connected to Google Drive.
-              </p>
-            </div>
-            <div class="jetprompt-setting-control">
-              <div class="jetprompt-btn-group">
-                <button class="jetprompt-btn jetprompt-btn-primary" id="syncNowBtn">
-                  Sync Now
-                </button>
-                <button class="jetprompt-btn jetprompt-btn-secondary" id="disconnectDriveBtn">
-                  Disconnect
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div class="jetprompt-setting-item">
-            <div class="jetprompt-setting-info">
-              <label class="jetprompt-setting-label">Auto-sync</label>
-              <p class="jetprompt-setting-description">
-                Automatically sync changes to Google Drive when prompts are added, edited, or deleted.
-              </p>
-            </div>
-            <div class="jetprompt-setting-control">
-              <label class="jetprompt-toggle">
-                <input type="checkbox" id="autoSync" checked>
-                <span class="jetprompt-toggle-slider"></span>
-              </label>
-            </div>
-          </div>
-        </div>
-      </section>
 
       <!-- Data Management Section -->
       <section class="jetprompt-settings-section">
@@ -177,7 +123,6 @@
   </div>
 
   <script src="js/storage.js"></script>
-  <script src="js/googleDriveSync.js"></script>
   <script src="js/options.js"></script>
 </body>
 </html>

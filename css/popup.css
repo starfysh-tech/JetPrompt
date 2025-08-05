@@ -35,17 +35,17 @@ body {
   font-family: var(--font-primary);
   background: linear-gradient(135deg, var(--color-darker) 0%, var(--color-dark) 100%);
   color: var(--color-light);
-  width: 400px;
-  min-height: 500px;
-  max-height: 600px;
+  width: 520px;
+  min-height: 650px;
+  max-height: 750px;
   overflow: hidden;
 }
 
 .jetprompt-container {
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  max-height: 600px;
+  height: 750px;
+  max-height: 750px;
 }
 
 /* Header */
@@ -448,6 +448,117 @@ body {
 
 .jetprompt-prompt-card {
   animation: fadeIn 0.3s ease-out;
+}
+
+/* Tag Editing */
+.jetprompt-tag-editing-container {
+  position: relative;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--border-radius-small);
+  padding: 8px;
+  margin-top: 8px;
+}
+
+.jetprompt-tag-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.jetprompt-tag-chip {
+  display: flex;
+  align-items: center;
+  background: var(--color-teal);
+  color: var(--color-dark);
+  padding: 2px 6px;
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.jetprompt-tag-chip-remove {
+  background: none;
+  border: none;
+  color: var(--color-dark);
+  cursor: pointer;
+  font-size: 12px;
+  margin-left: 4px;
+  padding: 0;
+  line-height: 1;
+}
+
+.jetprompt-tag-chip-remove:hover {
+  color: var(--color-error);
+}
+
+.jetprompt-tag-input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid transparent;
+  border-radius: var(--border-radius-small);
+  padding: 6px 8px;
+  color: var(--color-light);
+  font-family: var(--font-primary);
+  font-size: 12px;
+  transition: var(--transition);
+}
+
+.jetprompt-tag-input:focus {
+  outline: none;
+  border-color: var(--color-teal);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.jetprompt-tag-input::placeholder {
+  color: var(--color-gray);
+}
+
+.jetprompt-tag-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--color-dark);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--border-radius-small);
+  max-height: 150px;
+  overflow-y: auto;
+  z-index: 1000;
+  box-shadow: var(--shadow);
+}
+
+.jetprompt-tag-dropdown-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: var(--transition);
+  font-size: 12px;
+}
+
+.jetprompt-tag-dropdown-item:hover,
+.jetprompt-tag-dropdown-item.highlighted {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.jetprompt-tag-dropdown-checkbox {
+  margin-right: 8px;
+  accent-color: var(--color-teal);
+}
+
+.jetprompt-tag-dropdown::-webkit-scrollbar {
+  width: 4px;
+}
+
+.jetprompt-tag-dropdown::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+}
+
+.jetprompt-tag-dropdown::-webkit-scrollbar-thumb {
+  background: var(--color-teal);
+  border-radius: 2px;
 }
 
 /* Responsive adjustments */

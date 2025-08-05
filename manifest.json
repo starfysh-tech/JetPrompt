@@ -6,8 +6,7 @@
   "permissions": [
     "storage",
     "activeTab",
-    "scripting",
-    "identity"
+    "scripting"
   ],
   "host_permissions": [
     "<all_urls>"
@@ -20,11 +19,7 @@
       "128": "icons/icon128.png"
     }
   },
-  "oauth2": {
-    "scopes": [
-      "https://www.googleapis.com/auth/drive.file"
-    ]
-  },
+
   "background": {
     "service_worker": "background.js",
     "type": "module"
